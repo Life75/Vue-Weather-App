@@ -1,11 +1,11 @@
 const CITY = `tampa`;
 const WEATHER_KEY=`0c0482d33a1b1e06b025cb6d75a4a82f`
 
-function getWeatherData(): Promise<Object>{
+function getWeatherData(): Promise<any>{
     //Assuming your location is in tampa 
-   return pullAPIData().then((data) => {
+    return pullAPIData().then((data) => {
         const parsedData = weatherParser(data);
-        return data;
+        return parsedData;     
     })
 }
 
@@ -21,9 +21,8 @@ function weatherParser(data: any){
     let date=null;
     const weatherStack = [];
 
-    for(let i=0; i < data.list.lenght; i++){
+    for(let i=0; i < data.list.length; i++){
         const newDate = data.list[i].dt_txt.split(" ")[0];
-        console.table(data.list[i]);
 
         if(String(date) !== String(newDate)){
             date = newDate;
@@ -35,13 +34,12 @@ function weatherParser(data: any){
                 data.list[i].main.humidity,
                 data.list[i].wind.speed,
                 date,
-                data.list[i].weather[0].icon,
+                data.list[i].weather[0].icon
             ) 
-
+            weatherStack.push(weatherWidget);
         }
-        weatherStack.push(WeatherWidget);
-        return weatherStack;
     }
+    return weatherStack;
 }
 
 class WeatherWidget {
@@ -72,7 +70,7 @@ class WeatherWidget {
         this.icon = icon;
     }
 
-    getTemp(){
+    public getTemp(){
         return this.temperature;
     }
 
