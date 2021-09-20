@@ -1,5 +1,11 @@
 <template>
- <p>{{getWidget}}</p>
+ <ul>
+    <li 
+      v-for="weatherStats in getForcast" 
+      :key="weatherStats.getDate()">
+      {{weatherStats.getDate()}}
+    </li>
+ </ul>
 </template>
 
 <script lang="ts">
@@ -9,13 +15,13 @@ import {getWeatherData} from './weather/weatherAPI'
 
 @Component
 export default class WeatherApp extends Vue {
-  private text = null
+  private text = null;
 
-  get getWidget() {
+  get getForcast() {
     if(!this.text){
-      return 'loading..' 
+      return 'loading...';
     }
-    return this.text
+    return this.text;
   }
   
   
@@ -26,10 +32,8 @@ export default class WeatherApp extends Vue {
   } 
 
   async created() {
-    const test =await this.testing()
-    console.log(test[0])
+    const test = await this.testing()
     this.text = test;
-    
   }
 
 
