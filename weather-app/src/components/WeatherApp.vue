@@ -1,9 +1,9 @@
 <template>
  <ul>
     <li 
-      v-for="weatherStats in getForcast" 
-      :key="weatherStats.getDate()">
-      {{weatherStats.getDate()}}
+      v-for="weatherStat in getForcast" 
+      :key="weatherStat.getDate()">
+      <WeatherAppList :weatherStat="weatherStat"/>  
     </li>
  </ul>
 </template>
@@ -11,9 +11,15 @@
 <script lang="ts">
 import {  Component, Vue, } from 'vue-property-decorator';
 import {getWeatherData} from './weather/weatherAPI'
-//import WeatherAppList from './WeatherAppList.vue'
+import WeatherAppList from './WeatherAppList.vue'
 
-@Component
+@Component({
+  components: {
+    WeatherAppList
+  }
+})
+
+
 export default class WeatherApp extends Vue {
   private text = null;
 

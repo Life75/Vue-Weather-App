@@ -1,12 +1,12 @@
 <template>
-<p>hi</p>    
+<p>{{weatherStat}}</p>    
 </template>
 
 <script lang ="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component 
 export default class WeatherAppList extends Vue {
-    
+    @Prop({default: 'loading..'}) weatherStat: any
 }
 </script>
