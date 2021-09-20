@@ -1,36 +1,44 @@
 <template>
-  <p></p>
+ <p>{{getWidget}}</p>
 </template>
 
 <script lang="ts">
-import { Component, Vue, } from 'vue-property-decorator';
-//import {getWeatherData} from './weatherAPI'
+import {  Component, Vue, } from 'vue-property-decorator';
+import {getWeatherData} from './weather/weatherAPI'
 //import WeatherAppList from './WeatherAppList.vue'
-import { mapActions } from 'vuex';
-import { mapGetters } from 'vuex';
 
-@Component({
-  computed: ({
-    ...mapActions({
-      updateWeatherList: 'updateWeatherList'
-    }),
-
-    ...mapGetters({
-      getWeatherList: 'getWeatherList'
-    })
-  })
-
-
-})
-
+@Component
 export default class WeatherApp extends Vue {
-  updateWeatherList!: () => any;
+  private text = null
 
-  beforeMount() {
-    console.log(this.updateWeatherList)    
+  get getWidget() {
+    if(!this.text){
+      return 'loading..' 
+    }
+    return this.text
+  }
+  
+  
+  public testing(): Promise<any> {
+    return getWeatherData().then((data)=>{return data})
+    //return console.log(test)
+    
+  } 
+
+  async created() {
+    const test =await this.testing()
+    console.log(test[0])
+    this.text = test;
+    
   }
 
+
+
+
+  
+
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

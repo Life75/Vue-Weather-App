@@ -14,7 +14,6 @@ const mutations ={
 const actions ={
     updateWeatherList(context: any){
         context.commit('UPDATE_WEATHER_LIST', getWeatherData());
-        console.log('hello')
     }
 }
 
