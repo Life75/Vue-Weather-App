@@ -1,7 +1,7 @@
 const CITY = `tampa`;
 const WEATHER_KEY=`0c0482d33a1b1e06b025cb6d75a4a82f`
 
-function getWeatherData(): Promise<any>{
+function getWeatherData(): Promise<object>{
     //Assuming your location is in tampa 
     return pullAPIData().then((data) => {
         const parsedData = weatherParser(data);
@@ -70,31 +70,31 @@ class WeatherWidget {
         this.icon = icon;
     }
 
-    public getTemp(){
+    public getTemp(): string{
         return this.temperature;
     }
 
-    getDescription(){
+    getDescription(): string{
         return this.description;
     }
 
-    getPop(){
+    getPop(): string{
         return this.pop;
     }
 
-    getHumidity(){
+    getHumidity(): string{
         return this.humidity;
     }
 
-    getWind(){
+    getWind(): string{
         return this.wind;
     }
 
-    getDate(){
+    getDate(): string{
         return this.date;
     }
 
-    getIcon(){
+    getIcon(): string{
         return this.icon;
     }
 }

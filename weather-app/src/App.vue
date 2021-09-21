@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <WeatherApp/>
+    <WeatherAppList/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import WeatherApp from './components/WeatherApp.vue';
+import WeatherAppList from './components/WeatherAppList.vue';
 
 @Component({
   components: {
-    WeatherApp,
+    WeatherAppList,
   },
 })
 export default class App extends Vue {}
